@@ -16,6 +16,7 @@ franchise_name <- c("Dallas Cowboys", "New York Giants",
                     "New Orleans Saints", "Tampa Bay Buccaneers", 
                     "Arizona Cardinals", "Los Angeles Rams", 
                     "San Francisco 49ers", "Seattle Seahawks")
+
 # Table of total salary adjustments (so far) which will apply in 2024
 salary_adj <- c(0, 0, 0, 1.32, 0, 0, 0, 0, 0, 0, 0, 4.55, 0, 0, 0, 5.53)
 adl_nfc_salary_adj_2024 <- data.frame(franchise_name, salary_adj)
