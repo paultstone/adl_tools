@@ -1,0 +1,28 @@
+---
+title: "ADL NFC Projected 2024 Team Salaries"
+author: "Paul Stone"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+<br />  
+
+Methodology:  
+* The top 45 salaries for each team composes the projected 2023 roster  
+* From this roster, contracts which will expire in 2024 are discarded  
+* The resulting contracts are summed for each team  
+* This sum is multiplied by 110% to reflect yearly contract increases  
+* Any fifth year option (5YO) salaries or carry-over salary adjustments are added  
+<br />  
+
+```{r, echo=FALSE, include=FALSE}
+source("adl_afc_cap.R", local = knitr::knit_global())
+```
+
+```{r, layout="l-body-outset"}
+library(knitr)
+kable(adl_afc_2024_cap)
+```
