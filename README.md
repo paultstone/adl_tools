@@ -3,7 +3,7 @@
 
 2024 reports:
 * [ADL 2024 Unofficial NFC ERFA and RFA Eligibility](https://rpubs.com/metabagel/adl_2024_nfc_rfa_elig)
-* 
+* [ADL 2024 Unofficial AFC ERFA and RFA Eligibility](https://rpubs.com/metabagel/adl_2024_afc_rfa_elig)
 
 Some reports which have been generated:
 
