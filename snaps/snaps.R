@@ -7,7 +7,6 @@ library(stringr)
 library(nflreadr)
 
 current_year = format(Sys.Date(), "%Y")
-cur_week = 22
 
 adl <- mfl_connect(season = current_year, 
                    league_id = 60206, # from the URL of your league
