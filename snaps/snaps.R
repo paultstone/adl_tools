@@ -223,6 +223,9 @@ get_snaps_for_team <- function(team) {
     
     # remove the player name and position column
     player_snaps <- subset(player_snaps, select = snaps_pct )
+
+    # Perhaps automatic cell text color could go here?    
+    # https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html#CellText_Specification
     
     # transpose the column into a row
     player_snaps <- t(player_snaps)

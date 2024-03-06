@@ -3,13 +3,13 @@ title: "ADL Snaps for Rostered Players (%)"
 author: "Paul Stone"
 date: "`r Sys.Date()`"
 output: html_document
----x`
+---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 <br />
-All snaps are a percent of total snaps. For offensive players: offensive snaps. For defensive players: defensive snaps. Placekickers and punters are excluded, because their percentage snaps out of all special teams snaps is pretty meaningless.
+All snaps are a percent of total snaps. For offensive players: offensive snaps. For defensive players: defensive snaps. Placekickers and punters are excluded, because their percentage snaps out of all special teams snaps isn't very meaningful.
 <br />  
 
 ```{r, echo=FALSE, include=FALSE}
@@ -18,6 +18,101 @@ source("snaps.R", local = knitr::knit_global())
 
 ```{r, layout="l-body-outset"}
 library(knitr)
-# library(kableExtra)
-kable(sea_snaps, align = "lcrrrrrrrrrrrrrrrrrr")
+kable(nfc_team1_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = nfc_team1)
+kable(nfc_team2_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = nfc_team2)
+kable(nfc_team3_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = nfc_team3)
+kable(nfc_team4_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = nfc_team4)
+kable(nfc_team5_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = nfc_team5)
+kable(nfc_team6_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = nfc_team6)
+kable(nfc_team7_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = nfc_team7)
+kable(nfc_team8_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = nfc_team8)
+kable(nfc_team9_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = nfc_team9)
+kable(nfc_team10_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = nfc_team10)
+kable(nfc_team11_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = nfc_team11)
+kable(nfc_team12_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = nfc_team12)
+kable(nfc_team13_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = nfc_team13)
+kable(nfc_team14_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = nfc_team14)
+kable(nfc_team15_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = nfc_team15)
+kable(nfc_team16_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = nfc_team16)
+kable(afc_team1_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = afc_team1)
+kable(afc_team2_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = afc_team2)
+kable(afc_team3_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = afc_team3)
+kable(afc_team4_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = afc_team4)
+kable(afc_team5_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = afc_team5)
+kable(afc_team6_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = afc_team6)
+kable(afc_team7_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = afc_team7)
+kable(afc_team8_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = afc_team8)
+kable(afc_team9_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = afc_team9)
+kable(afc_team10_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = afc_team10)
+kable(afc_team11_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = afc_team11)
+kable(afc_team12_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = afc_team12)
+kable(afc_team13_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = afc_team13)
+kable(afc_team14_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = afc_team14)
+kable(afc_team15_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = afc_team15)
+kable(afc_team16_snaps, 
+      align = "lcrrrrrrrrrrrrrrrrrr", 
+      caption = afc_team16)
+
 ```
