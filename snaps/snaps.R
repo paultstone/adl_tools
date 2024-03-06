@@ -50,26 +50,9 @@ to_name <- c(
 
 alt_names <- data.frame(from_name, to_name)
 
+# create lookup vector
 get_alt_name <- alt_names$to_name
 names(get_alt_name) <- alt_names$from_name 
-
-print(get_alt_name["Da'Ron Payne"])
-
-#stop("exit early")
-#names <- c("Paul","Carl", "Mike")
-#ages <- c(55, 53, 48)
-#mydf <- data.frame(names,ages)
-
-#from_name <- c("Carl", "Mike")
-#to_name <- c("C.J.", "Michael")
-#xlate <- data.frame(from_name, to_name)
-
-#merge(x=mydf,y=xlate, by.x="names", by.y="from_name", all.x = TRUE)
-#mydf$names <- ifelse(is.na(mydf$to_name), mydf$names, mydf$to_name)
-
-# perhaps create an alternate name column, and test against both names,
-# if both exist
-
 
 # Get the path to the adl_rosters module and import it
 adl_rosters_module = ifelse(basename(getwd())=="adl_tools",
@@ -170,10 +153,6 @@ snaps <- snaps %>%
     )
 )
 
-# Concatenate all 3 types of snaps into one column
-#snaps <- within(snaps, snaps_pct <- paste(offense_pct, defense_pct, st_pct, sep=' - '))
-#snaps$snaps_pct <- pmax(snaps$offense_pct, snaps$defense_pct)
-
 # Remove the 3 individual types of snaps columns
 snaps <- subset(snaps, select = -c(offense_pct, defense_pct, st_pct) )
 
@@ -185,41 +164,10 @@ snaps$player <- word(snaps$player,1,2)
 # periods.
 snaps <- mutate(snaps, player = gsub('\\.', '', player))
 
-# Drop weeks 19+ (postseason)
-#snaps <- snaps[ snaps$week <= 18, ]
-
-# Only Seattle players
-#snaps <- snaps[ snaps$player %in% team_players, ]
-
 get_snaps_for_team <- function(team) {
   # change lastname, firstname to firstname lastname
-#  team_players <- sub("(\\w+\\s*\\w+).*,\\s(\\w.*)","\\2 \\1", team$player_name)
-#  team_players <- sub("(\\w+[-\\.']*\\w*\\s*\\w*\\.*)\\s*,\\s*(\\w+[-\\.']*\\w*\\.*)","\\2 \\1", team$player_name)
   team_players <- sub("([^,]+)\\s*,\\s*([^,]+)","\\2 \\1", team$player_name)
 
-#  print(team_players)
-#  # Use alternate names  
-#  merge(x=team_players,y=name_variants, by.x="team_players", by.y="from_name", all.x = TRUE)
-#  team_players$names <- 
-#    ifelse(is.na(team_playersf$to_name), 
-#           team_players$names, 
-#           team_players$to_name)
-#  
-#  print(team_players)
-#  stop("early exit")
-  
-  # Remove kickers and punters
-  #team_players <- team_players[!(team_players$position]
-
-  #cur_player_name = sub(" .*", "", cur_player)
-#  if(team_players[4] == "Dorian Thompson-Robinson") {
-#    print(team_players)
-#    stop()
-#  }
-  
-  # start from scratch; don't warn if doesn't exist
-  #suppressWarnings(rm(team_snaps))
-  
   team_snaps <- data.frame(player=character(), position=character(), 
                               w1=character(), w2=character(),
                               w3=character(), w4=character(),
@@ -236,13 +184,6 @@ get_snaps_for_team <- function(team) {
   
   for (plyr in 1:length(team_players)) {
     cur_player = team_players[plyr]
-
-    #cur_player_name = sub(" .*", "", cur_player)
-#    if(cur_player == "Dorian Thompson-Robinson") {
-#      print(cur_player)
-#      print(team_players)
-#      stop()
-#    }
     
     # Use alternate name, if one exists in the
     # lookup table
@@ -265,12 +206,6 @@ get_snaps_for_team <- function(team) {
     if (nrow(player_snaps) == 0) { 
       print(paste("Could not find snaps for:", cur_player_name))  
     }
-#    if (cur_player_name == "Joe Tryon") {
-#      print(player_snaps)
-#      print(nrow(player_snaps))
-#      print(ncol(player_snaps))
-#      stop()
-#    }
     
     # sort by number of snaps and keep only the first entry for each week 
     # in case of duplicates
@@ -331,7 +266,9 @@ for (i in 1:length(nfc_franchises)) {
   nfc_teamx=paste("nfc_team", i, sep = "")
   assign(nfc_teamx, cur_team)
   # "0001, "0002", etc.
-  team_id <- adl_nfc_franchise_names$franchise_id[adl_nfc_franchise_names$franchise_name==cur_team]
+  team_id <- 
+    adl_nfc_franchise_names$franchise_id[
+      adl_nfc_franchise_names$franchise_name==cur_team]
   # nfc_team1_snaps = {}; nfc_team2_snaps = {}
   nfc_teamx_snaps=paste(nfc_teamx, "_snaps", sep = "")
   # get the roster for the ADL franchise
@@ -350,7 +287,9 @@ for (i in 1:length(afc_franchises)) {
   afc_teamx=paste("afc_team", i, sep = "")
   assign(afc_teamx, cur_team)
   # "0017", "0018", etc.
-  team_id <- adl_afc_franchise_names$franchise_id[adl_afc_franchise_names$franchise_name==cur_team]
+  team_id <- 
+    adl_afc_franchise_names$franchise_id[
+      adl_afc_franchise_names$franchise_name==cur_team]
   # afc_team1_snaps = {}; afc_team2_snaps = {}
   afc_teamx_snaps=paste(afc_teamx, "_snaps", sep = "")
   # get the roster for the ADL franchise
