@@ -6,7 +6,8 @@ Scripts for each conference are provided to generate reports. These scripts need
 The reports which can be generated are as follows:
 
 * Total projected salary for each team for the following year
-* Unofficial ERFA and RFA eligibility for currently rostered players for the current offseason
+* Unofficial ERFA and RFA eligibility for rostered players for the current offseason
+* Percent snaps for rostered players
 
 2024 reports:
 * [ADL 2024 Unofficial NFC ERFA and RFA Eligibility](https://rpubs.com/metabagel/adl_2024_nfc_rfa_elig)
