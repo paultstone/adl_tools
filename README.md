@@ -12,7 +12,7 @@ The reports which can be generated are as follows:
 2024 reports:
 * [ADL 2024 Unofficial NFC ERFA and RFA Eligibility](https://rpubs.com/metabagel/adl_2024_nfc_rfa_elig)
 * [ADL 2024 Unofficial AFC ERFA and RFA Eligibility](https://rpubs.com/metabagel/adl_2024_afc_rfa_elig)
-* [Snap counts as a percentage of total snaps](https://rpubs.com/metabagel/snaps)
+* [ADL Snaps for Rostered Players (%)](https://rpubs.com/metabagel/snaps)
 
 2023 reports:
 
