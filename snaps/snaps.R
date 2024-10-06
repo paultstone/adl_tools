@@ -29,7 +29,10 @@ from_name <- c(
   "Nate Landman",
   "Shaq Barrett",
   "Demarcus Lawrence",
-  "Decobie Durant"
+  "Decobie Durant",
+  "Joshua Palmer",
+  "Dee Alford",
+  "Foley Fatukasi"
 )
 
 # Snaps DB name
@@ -45,7 +48,10 @@ to_name <- c(
   "Nathan Landman",
   "Shaquil Barrett",
   "DeMarcus Lawrence",
-  "Cobie Durant"
+  "Cobie Durant",
+  "Josh Palmer",
+  "DeAundre Alford",
+  "Folorunso Fatukasi"
 )
 
 alt_names <- data.frame(from_name, to_name)
@@ -200,11 +206,25 @@ get_snaps_for_team <- function(team) {
     # periods.
     cur_player_name = gsub('\\.', '', cur_player_name)
     
+    # Future development:
+    #   * Add a field to snaps database, modified player name
+    #   * Remove periods and apostrophes
+    #   * First and last name only
+    #   * Convert to all lower case
+    #   * Truncate first and last name to first four letters
+    #   * And do all of the above for the cur_player_name as well
+    
+    # Only the first 4 characters of first and last name, in order to
+    # try to deal with name variations
+    #trunc_player_name <- sapply(cur_player_name, function(str) {
+    #  paste(strtrim(unlist(strsplit(str, " ")), 4), collapse = " ")  
+    #})
+    
     # get the snaps dataframe for current player
     player_snaps <- snaps[ snaps$player == cur_player_name, ]
 
     if (nrow(player_snaps) == 0) { 
-      print(paste("Could not find snaps for:", cur_player_name))  
+      print(paste("Could not find snaps for:", cur_player))  
     }
     
     # sort by number of snaps and keep only the first entry for each week 

@@ -2,14 +2,18 @@
 title: "ADL Snaps for Rostered Players (%)"
 author: "Paul Stone"
 date: "`r Sys.Date()`"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 <br />
-All snaps are a percent of total snaps. For offensive players: offensive snaps. For defensive players: defensive snaps. Placekickers and punters are excluded, because their percentage snaps out of all special teams snaps isn't very meaningful.
+All snaps are a percent of total snaps. For offensive players: offensive snaps. For defensive players: defensive snaps. Placekickers and punters are excluded, because their percentage snaps out of all special teams snaps isn't very meaningful. 
+<br /><br />
+A small number of players may not have any snaps shown, due to player name variation between MFL and the nflverse data repositories. I can fix problems with individual players if you let me know. I am working on a more comprehensive solution.
 <br />  
 
 ```{r, echo=FALSE, include=FALSE}
