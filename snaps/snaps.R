@@ -279,6 +279,9 @@ get_snaps_for_team <- function(team) {
   # Drop weeks 19+ (postseason)
   team_snaps <- subset(team_snaps, select = -c(w19,w20,w21,w22))
 
+  # Don't display "NA"
+  team_snaps[is.na(team_snaps)] <- ""
+
   return(team_snaps)
 }
 
