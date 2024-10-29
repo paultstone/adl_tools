@@ -1,9 +1,13 @@
 #
-# Next step is to only display the selected team's roster.
+# Next steps:
+#  - have a button which:
+#      - removes the first tab, 
+#      - unhides all tabs, and 
+#      - switches to tab 2
 #
+#  - only show the roster for the selected team
 #
-#
-#
+
 
 library(shiny)
 library(ffscrapr)
@@ -59,19 +63,31 @@ adl_afc_franchise_names <-
   adl_afc_franchises %>% 
   select("franchise_id", "franchise_name")
 
-afc_rosters <- adl$adl_rosters(adl_connection, "afc")
-nfc_rosters <- adl$adl_rosters(adl_connection, "nfc")
+adl_nfc_franchise_names <- 
+  adl_nfc_franchises %>% 
+  select("franchise_id", "franchise_name")
 
-# Define UI for application that draws a histogram
+adl_afc_franchise_names <- 
+  adl_afc_franchises %>% 
+  select("franchise_id", "franchise_name")
+
+getConferenceRosters <- function(input_conference) {
+  if (input_conference == "AFC")
+    adl$adl_rosters(adl_connection, "afc")
+  else
+    adl$adl_rosters(adl_connection, "nfc")
+}
+
 ui <- fluidPage(
     # Application title
     #titlePanel("Select your conference and team"),
     #renderText(
     #  {"Select your conference and franchise:"}),
-  tabsetPanel(
+  tabsetPanel(type="hidden",
     tabPanel("Select franchise", 
       radioButtons("conference_name", "Conference", c("AFC", "NFC")),
-      uiOutput('franchises')),
+      uiOutput('franchises'),
+      actionButton("Team Selected", "Continue")),
     tabPanel("Summary",
       uiOutput('summary'))
   )
@@ -89,14 +105,16 @@ server <- function(input, output) {
         nfc_franchises
     radioButtons('franchise_name', "Team Name", franchise_list)
   })
-
+  
+#  team_id <- 
+#    adl_nfc_franchise_names$franchise_id[
+#      adl_nfc_franchise_names$franchise_name==cur_team]
+  
   output$conference_rosters <- 
     renderDataTable({
-      if (input$conference_name == "AFC")
-        adl$adl_rosters(adl_connection, "afc")
-      else
-        adl$adl_rosters(adl_connection, "nfc")
-    })  
+      getConferenceRosters(input$conference_name)
+    })
+  
   output$summary <- renderUI({
        dataTableOutput("conference_rosters")
   })
