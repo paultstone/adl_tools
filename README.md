@@ -9,10 +9,14 @@ The reports which can be generated are as follows:
 * Unofficial ERFA and RFA eligibility for rostered players for the current offseason
 * Percent snaps for rostered players
 
+2025 reports:
+* [ADL 2025 Unofficial NFC ERFA and RFA Eligibility](https://rpubs.com/metabagel/adl_2025_nfc_rfa_elig)
+* [ADL 2025 Unofficial AFC ERFA and RFA Eligibility](https://rpubs.com/metabagel/adl_2025_afc_rfa_elig)
+* [ADL Snaps for Rostered Players (%)](https://rpubs.com/metabagel/snaps)
+
 2024 reports:
 * [ADL 2024 Unofficial NFC ERFA and RFA Eligibility](https://rpubs.com/metabagel/adl_2024_nfc_rfa_elig)
 * [ADL 2024 Unofficial AFC ERFA and RFA Eligibility](https://rpubs.com/metabagel/adl_2024_afc_rfa_elig)
-* [ADL Snaps for Rostered Players (%)](https://rpubs.com/metabagel/snaps)
 
 2023 reports:
 
