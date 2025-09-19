@@ -1,11 +1,5 @@
 # ADL Percent of Snaps for Rostered Players
 #
-# This is a work-in-progress version of snaps where obtaining the roster
-# information from MFL is offloaded to a module. The next thing which needs to
-# happen is for the main code to be converted to a function, so that snaps for
-# all teams can be obtained more easily. Currently, still only getting snaps
-# for a single team.
-#
 
 library(ffscrapr)
 library(dplyr)
@@ -152,10 +146,12 @@ snaps <- snaps %>%
 #      position == "P" ~ st_pct,
       position == "DT" |
       position == "DE" |
+      position == "DL" |
       position == "LB" |
       position == "CB" |
       position == "SS" |
-      position == "FS" ~ defense_pct
+      position == "FS" |
+      position == "S" ~ defense_pct
     )
 )
 
@@ -174,6 +170,12 @@ get_snaps_for_team <- function(team) {
   # change lastname, firstname to firstname lastname
   team_players <- sub("([^,]+)\\s*,\\s*([^,]+)","\\2 \\1", team$player_name)
 
+  # Get the roster status for all the players, e.g., INJURED_RESERVE
+  team_roster_status <- data.frame(team_players, team$roster_status)
+  
+  # Get the player position
+  team_player_pos <- data.frame(team_players, team$pos)
+  
   team_snaps <- data.frame(player=character(), position=character(), 
                               w1=character(), w2=character(),
                               w3=character(), w4=character(),
@@ -223,7 +225,10 @@ get_snaps_for_team <- function(team) {
     # get the snaps dataframe for current player
     player_snaps <- snaps[ snaps$player == cur_player_name, ]
 
-    if (nrow(player_snaps) == 0) { 
+    # get the roster status for the current player (use mostly unmodified name - "cur_player")
+    cur_roster_status = team_roster_status[ team_roster_status$team_players == cur_player, ]$team.roster_status
+
+    if (nrow(player_snaps) == 0 & cur_roster_status != "INJURED_RESERVE") { 
       print(paste("Could not find snaps for:", cur_player))  
     }
     
@@ -239,8 +244,16 @@ get_snaps_for_team <- function(team) {
     player_snaps <- complete(player_snaps, week = 1:22, fill = list())
     
     # save the player position from the last value which is not NA
-    cur_pos = last(na.omit(player_snaps$position))
+    #cur_pos = last(na.omit(player_snaps$position))
     
+    # or if no valid snaps, then just use the latest one
+    #if (is.na(cur_pos)) {
+    #  cur_pos = last(player_snaps$position)
+    #}
+    
+    # get the ADL position for the current player (use mostly unmodified name - "cur_player")
+    cur_pos = team_player_pos[ team_player_pos$team_players == cur_player, ]$team.pos
+
     # remove the player name and position column
     player_snaps <- subset(player_snaps, select = snaps_pct )
 
